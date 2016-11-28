@@ -1,0 +1,46 @@
+---
+- name: gather facts about current infrastructure
+  hosts: localhost
+  connection: local
+  gather_facts: false
+
+  tasks:
+
+  - name: get more ec2 instance facts
+    ec2_remote_facts:
+      region: 'eu-central-1'
+    register: instance_facts
+
+  - debug: 
+      msg: "{{instance_facts}}"
+      verbosity: 2
+
+  - name: gather facts about vpc
+    ec2_vpc_net_facts:
+      region: 'eu-central-1'
+      filters:
+        vpc-id: "{{instance_facts['instances'][0].vpc_id}}"
+    register: vpc_facts
+
+  - debug: 
+      msg: "{{vpc_facts}}"
+      verbosity: 2
+
+  - name: gather facts about vpc subnets
+    ec2_vpc_subnet_facts:
+      region: 'eu-central-1'
+      filters:
+        vpc-id: "{{instance_facts['instances'][0].vpc_id}}"
+    register: vpc_subnet_facts
+
+  - debug: 
+      msg: "{{vpc_subnet_facts}}"
+      verbosity: 2
+  
+# Maybe this will be helpful later
+#  - name: gather facts about ec2 autoscaling groups
+#    ec2_asg_facts:
+#      region: 'eu-central-1'
+#    register: args
+#
+#  - debug: var=args
