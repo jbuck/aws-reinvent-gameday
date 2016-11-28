@@ -13,6 +13,7 @@ import argparse
 import urllib2
 import redis
 import json
+import time
 
 # logging.basicConfig(level=logging.DEBUG)
 
@@ -31,6 +32,10 @@ API_BASE = ARGS.API_base
 APP = Flask(__name__)
 
 REDIS = redis.StrictRedis(host='ubercorn-v1.qtgfwb.clustercfg.euc1.cache.amazonaws.com', port=6379, db=0)
+
+@APP.route('/health')
+def health():
+    return "OK"
 
 # creating flask route for type argument
 @APP.route('/', methods=['GET', 'POST'])
@@ -54,7 +59,8 @@ def process_message(msg):
     """
     processes the messages by combining and appending the kind code
     """
-    print "incoming", msg
+    start = time.time()
+    #print "incoming", msg
     msg_id = msg['Id'] # The unique ID for this message
     part_number = msg['PartNumber'] # Which part of the message it is
     data = msg['Data'] # The data of the message
@@ -73,8 +79,6 @@ def process_message(msg):
 
     # if both parts are filled, the message is complete
     if None not in parts and len(parts) == msg['TotalParts']:
-        APP.logger.debug("got a complete message for %s" % msg_id)
-        print "have both parts"
         # We can build the final message.
         result = parts[0] + parts[1]
         # sending the response to the score calculator
@@ -82,17 +86,15 @@ def process_message(msg):
         #   url -> api_base/jFgwN4GvTB1D2QiQsQ8GHwQUbbIJBS6r7ko9RVthXCJqAiobMsLRmsuwZRQTlOEW
         #   headers -> x-gameday-token = API_token
         #   data -> EaXA2G8cVTj1LGuRgv8ZhaGMLpJN2IKBwC5eYzAPNlJwkN4Qu1DIaI3H1zyUdf1H5NITR
-        APP.logger.debug("ID: %s" % msg_id)
-        APP.logger.debug("RESULT: %s" % result)
         url = API_BASE + '/' + msg_id
-        print url
         print 'outgoing', result
+        print 'LATENCY pre-req:', time.time() - start
         req = urllib2.Request(url, data=result, headers={'x-gameday-token':ARGS.API_token})
         resp = urllib2.urlopen(req)
         resp.close()
-        print resp
     else:
         REDIS.set(msg_id, repr(parts))
+    print "LATENCY:", time.time() - start
 
     return 'OK'
 
