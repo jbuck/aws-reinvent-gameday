@@ -1,0 +1,23 @@
+{
+  "name": "aws-reinvent-gameday",
+  "version": "1.0.0",
+  "description": "The best",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jbuck/aws-reinvent-gameday.git"
+  },
+  "author": "",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/jbuck/aws-reinvent-gameday/issues"
+  },
+  "homepage": "https://github.com/jbuck/aws-reinvent-gameday#readme",
+  "dependencies": {
+    "body-parser": "^1.15.2",
+    "request": "^2.79.0"
+  }
+}
