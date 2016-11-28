@@ -4,15 +4,16 @@ Wow, first day at Unicorn.Rentals. I found the orientation pretty cringeworthy, 
 
 The old team left something running and I think my first task will be to figure out what it is doing. I think it would be cool to use Ansible to get an inventory of what's running in the AWS account. The Ansible stuff here probably needs some work, but hopefully this will be a good starting point for my team or someone else that is in the same situation!
 
-From a quick glance I don't feel great about what is running there. There is some guy here who likes to tinker with the network stuff and insists that I call him "The Plague." He seems to hate documentation. I've been trying to ask him about what he did but he keeps muttering something about DaVinci and playing on his VR headset. 
+From a quick glance I don't feel great about what is running there. There is some guy here who likes to tinker with the network stuff and insists that I call him "The Plague." He seems to hate documentation. I've been trying to ask him about what he did but he keeps muttering something about DaVinci and playing on his VR headset.
 
 Here's what's in this zip file:
 
-- facts.yml: provides you some information as to what is running in your AWS environment. 
+- facts.yml: provides you some information as to what is running in your AWS environment.
 - server.py: the python server application that powers this part of unicorn.rentals. It may be a good idea to familiarize myself with the code.
 
 ### How to use
 
+- `pip install -r requirements.txt`
 
 - Pip install [Ansible](http://docs.ansible.com/ansible/intro_installation.html) either on an EC2 instance or locally ```pip install ansible```
 
