@@ -98,8 +98,7 @@ def process_message(msg):
         req = urllib2.Request(url, data=result, headers={'x-gameday-token':ARGS.API_token})
         resp = urllib2.urlopen(req)
         resp.close()
-    else:
-        REDIS.set(msg_id, repr(parts))
+    REDIS.set(msg_id, repr(parts))
     print "LATENCY:", time.time() - start
 
     return 'OK'
