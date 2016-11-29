@@ -77,6 +77,8 @@ def process_message(msg):
         parts = eval(p)
     else:
         parts = [None for i in range(msg['TotalParts'])]
+    if None not in parts:
+        return 'OK'
 
     # store this part of the message in the correct part of the list
     parts[part_number] = data
