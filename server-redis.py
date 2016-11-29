@@ -31,7 +31,7 @@ API_BASE = ARGS.API_base
 
 APP = Flask(__name__)
 
-REDIS = redis.StrictRedis(host='ubercorn-v1.qtgfwb.clustercfg.euc1.cache.amazonaws.com', port=6379, db=0)
+REDIS = redis.StrictRedis(host='172.31.27.62', port=6379, db=0)
 
 @APP.route('/health')
 def health():
