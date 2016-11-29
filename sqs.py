@@ -12,6 +12,6 @@ while True:
         if 'donotreplytothis' in message.body:
             message.delete()
             continue
-        r = requests.post('http://v0-1912230813.eu-central-1.elb.amazonaws.com/', data=message.body, headers={'content-type': 'application/json'})
+        r = requests.post('http://UberCorn-ELB-503246632.eu-central-1.elb.amazonaws.com/', data=message.body, headers={'content-type': 'application/json'})
         print message.body, r.status_code
         message.delete()
