@@ -21,6 +21,10 @@ app.get('/', function (req, res) {
   });
 });
 
+app.get('/health', (req, res) => {
+  res.sendStatus(200);
+});
+
 app.post('/', function (req, res) {
   RECIEVED++;
 
