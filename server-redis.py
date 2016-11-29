@@ -82,6 +82,7 @@ def process_message(msg):
 
     # store this part of the message in the correct part of the list
     parts[part_number] = data
+    REDIS.set(msg_id, repr(parts))
 
     # if both parts are filled, the message is complete
     if None not in parts and len(parts) == msg['TotalParts']:
@@ -100,7 +101,6 @@ def process_message(msg):
         req = urllib2.Request(url, data=result, headers={'x-gameday-token':ARGS.API_token})
         resp = urllib2.urlopen(req)
         resp.close()
-    REDIS.set(msg_id, repr(parts))
     print "LATENCY:", time.time() - start
 
     return 'OK'
