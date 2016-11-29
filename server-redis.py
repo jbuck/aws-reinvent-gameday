@@ -65,6 +65,10 @@ def process_message(msg):
     part_number = msg['PartNumber'] # Which part of the message it is
     data = msg['Data'] # The data of the message
 
+    if 'donotreply' in msg_id or 'Hippogriff' in data:
+        return 'OK'
+
+
     # Try to get the parts of the message from the MESSAGES dictionary.
     # If it's not there, create one that has None in both parts
     #parts = MESSAGES.get(msg_id, [None, None])
@@ -87,6 +91,8 @@ def process_message(msg):
         #   headers -> x-gameday-token = API_token
         #   data -> EaXA2G8cVTj1LGuRgv8ZhaGMLpJN2IKBwC5eYzAPNlJwkN4Qu1DIaI3H1zyUdf1H5NITR
         url = API_BASE + '/' + msg_id
+        if 'Hippogriff' in result:
+            return 'OK'
         print 'outgoing', result
         print 'LATENCY pre-req:', time.time() - start
         req = urllib2.Request(url, data=result, headers={'x-gameday-token':ARGS.API_token})
