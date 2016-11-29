@@ -35,7 +35,7 @@ app.post('/', function (req, res) {
 
   MESSAGES[req.body.Id][req.body.PartNumber] = req.body.Data;
 
-  console.log(req.body.Id + " = " + MESSAGES[req.body.Id]
+  console.log(req.body.Id + " = " + MESSAGES[req.body.Id]);
 
   var ready_to_send = true;
   for (var i = 0; i < MESSAGES_LENGTH[req.body.Id]; i++) {
