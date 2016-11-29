@@ -26,3 +26,7 @@ Here's what's in this zip file:
 Make note of the information it returns to you. This can show you what EC2 instances are running in your account.
 For more information, visit the [Ansible documentation](http://docs.ansible.com/ansible/index.html) and [cloud module](http://docs.ansible.com/ansible/list_of_cloud_modules.html) pages
 
+### Testing
+
+`API_BASE='http://localhost:8001/score' API_TOKEN=asdf PORT=8000 node index.js`
+`PORT=8001 node test.js`
