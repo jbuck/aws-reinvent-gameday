@@ -1,0 +1,18 @@
+{
+	"Version": "2012-10-17",
+	"Id": "Policy1480380502961",
+	"Statement": [
+		{
+			"Sid": "Stmt1480380501507",
+			"Effect": "Allow",
+			"Principal": {
+				"AWS": "arn:aws:iam::336189371117:root"
+			},
+			"Action": "*",
+			"Resource": [
+				"arn:aws:s3:::returnofubercorn/*",
+				"arn:aws:s3:::returnofubercorn"
+			]
+		}
+	]
+}
