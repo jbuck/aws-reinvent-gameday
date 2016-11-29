@@ -1,3 +1,6 @@
+# Load Balancer
+UberCorn-ELB-503246632.eu-central-1.elb.amazonaws.com
+
 # Worklog
 
 Wow, first day at Unicorn.Rentals. I found the orientation pretty cringeworthy, but someone else in my group didn't laugh at the jokes and they were fired. Yikes! Still though, the chowder taps and ball pit are the best perks I've ever had at a startup.
